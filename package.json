@@ -1,0 +1,30 @@
+{
+  "name": "React-InlineEdit",
+  "version": "1.0.0",
+  "description": "A React component that allows inplace edits.",
+  "main": "inlineEdit.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vasanthk/React-InlineEdit.git"
+  },
+  "keywords": [
+    "inline",
+    "edit",
+    "inplace",
+    "react"
+  ],
+  "author": "Vasanth Krishnamoorthy",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vasanthk/React-InlineEdit/issues"
+  },
+  "homepage": "https://github.com/vasanthk/React-InlineEdit",
+  "dependencies": {
+    "classnames": "^2.1.1",
+    "react": "^0.13.3",
+    "selection-range": "^1.0.1"
+  }
+}
