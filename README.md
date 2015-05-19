@@ -1,7 +1,7 @@
 # React inline edit
 
 This component allows you to to make inplace edits using 'contenteditable' and behaves like and input element.
-Customized version of react wysiwyg.
+Inpired by Ben Mcmahen's react wysiwyg.
 
 Support: Chrome, Firefox, Safari (desktop & mobile), and IE 9-11.
 
@@ -14,7 +14,7 @@ $ npm install react-inline-edit
 ## Usage
 
 ```javascript
-var InlineEdit = require('react-wysiwyg');
+var InlineEdit = require('react-inline-edit');
 
 var Example = React.createClass({
   
@@ -62,7 +62,7 @@ var Example = React.createClass({
   },
 
   enableEditing: function(){
-    // set your contenteditable field into editing mode.
+    // contenteditable field set to edit mode.
     this.setState({ editing: true });
   }
 
