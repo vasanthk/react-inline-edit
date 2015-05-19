@@ -1,5 +1,5 @@
 {
-  "name": "React-InlineEdit",
+  "name": "react-inline-edit",
   "version": "1.0.0",
   "description": "A React component that allows inplace edits.",
   "main": "InlineEdit.js",
