@@ -11,10 +11,13 @@
     "url": "https://github.com/vasanthk/React-InlineEdit.git"
   },
   "keywords": [
+    "inline-edit",
+    "contenteditable",
     "inline",
     "edit",
     "inplace",
-    "react"
+    "react",
+    "react-component"
   ],
   "author": "Vasanth Krishnamoorthy",
   "license": "ISC",
