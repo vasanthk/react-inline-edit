@@ -1,9 +1,9 @@
 # React inline edit
 
-This component allows you to to make inplace edits using 'contenteditable' and behaves like and input element.
+This component allows you to to make inplace edits using a hybrid approach that behaves like a 'contenteditable' input element.
 Inpired by Ben Mcmahen's react wysiwyg.
 
-Support: Chrome, Firefox, Safari (desktop & mobile), and IE 9-11.
+Support: Chrome, Firefox, Safari (desktop & mobile) and IE 9+
 
 ## Install
 
