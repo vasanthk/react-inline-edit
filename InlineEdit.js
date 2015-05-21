@@ -2,7 +2,7 @@
  * React Inline Edit Component
  * @author: Vasanth Krishnamoorthy
  *
- * Recreated Ben McMahen's react-wysiwyg + Added Customizations
+ * Recreated Ben McMahen's react-wysiwyg + Customizations
  */
 
 /**
@@ -102,6 +102,7 @@ var InlineEdit = React.createClass({
       onPaste: this.onPaste,
       onMouseDown: this.onMouseDown,
       onTouchStart: this.onMouseDown,
+      onFocus: this.onFocus,
       onKeyPress: this.onKeyPress,
       onInput: this.onInput,
       onKeyUp: this.onKeyUp
@@ -119,19 +120,27 @@ var InlineEdit = React.createClass({
     React.findDOMNode(this).textContent = '';
   },
 
-  setCursorToStart: function () {
+  setCursorToStart: function (atStart) {
     React.findDOMNode(this).focus();
     if (!isNotServer) {
       return;
     }
 
-    // Note: Range and Selection Web APIs have limited Browser support as of now (5/18/15)
-    var sel = window.getSelection();
-    var range = document.createRange(); // The Range interface represents a fragment of a document that can contain nodes and parts of text nodes.
-    range.setStart(React.findDOMNode(this), 0); // Sets the start position of a Range
-    range.collapse(true);   // true collapses the Range to its start, false to its end
-    sel.removeAllRanges();  // Removes all ranges from the selection
-    sel.addRange(range);    // Adds a Range to a Selection
+    if (typeof window.getSelection !== 'undefined'
+      && typeof document.createRange !== 'undefined') {
+      // Note: Range and Selection Web APIs have limited Browser support as of now (5/15)
+      var sel = window.getSelection();
+      var range = document.createRange(); // The Range interface represents a fragment of a document that can contain nodes and parts of text nodes.
+      range.selectNodeContents(React.findDOMNode(this));
+      range.collapse(atStart);  // true collapses the Range to its start, false to its end
+      sel.removeAllRanges();  // Removes all ranges from the selection
+      sel.addRange(range);  // Adds a Range to a Selection
+    } else if (typeof document.body.createTextRange !== 'undefined') {
+      var textRange = document.body.createTextRange();
+      textRange.moveToElementText(React.findDOMNode(this));
+      textRange.collapse(atStart);
+      textRange.select();
+    }
   },
 
   // Event handlers
@@ -140,7 +149,17 @@ var InlineEdit = React.createClass({
       return;
     }
     // if we have a placeholder, set the cursor to the start
-    this.setCursorToStart();
+    this.setCursorToStart(true);
+    e.preventDefault();
+  },
+
+  onFocus: function (e) {
+    if (this.props.text.length) {
+      this.setCursorToStart(false); // Handles scnarios where you Tab or Shift+Tab to a field.
+      return;
+    }
+    // if we have a placeholder, set the cursor to the start
+    this.setCursorToStart(true);
     e.preventDefault();
   },
 
