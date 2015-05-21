@@ -76,7 +76,7 @@ var InlineEdit = React.createClass({
     // setup classes
     var classes = {
       'react-inline-edit': true,
-      'is-empty': !this.props.text.trim().length
+      'is-empty': (!this.props.text.trim().length || (this.props.text === this.props.placeholder))
     };
 
     // Add in custom classes to the classes array.
@@ -154,7 +154,7 @@ var InlineEdit = React.createClass({
   },
 
   onFocus: function (e) {
-    if (this.props.text.length) {
+    if (this.props.text.length && (this.props.text !== this.props.placeholder)) {
       this.setCursorToStart(false); // Handles scnarios where you Tab or Shift+Tab to a field.
       return;
     }
