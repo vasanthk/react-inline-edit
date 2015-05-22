@@ -194,6 +194,13 @@ var InlineEdit = React.createClass({
           prev();
           break;
 
+        default:
+          this.unsetPlaceholder();
+          break;
+      }
+    } else {
+      // If there is text filled in.
+      switch (keyCode) {
         case 13:
           // 'Enter' key
           prev();
@@ -211,7 +218,6 @@ var InlineEdit = React.createClass({
           break;
 
         default:
-          this.unsetPlaceholder();
           break;
       }
     }
