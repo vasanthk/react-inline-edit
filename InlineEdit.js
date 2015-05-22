@@ -174,7 +174,7 @@ var InlineEdit = React.createClass({
 
     var keyCode = e.keyCode;
 
-    // 'Bold' and 'Italic' text using keyboard
+    // Disables 'Bold'ing and 'Italic'izing text using keyboard on 'contenteditable' field
     if (e.metaKey) {
       // ⌘ 'b' or ⌘'i' in Mac for bold/italic
       if (keyCode === 66 || keyCode === 73) {
