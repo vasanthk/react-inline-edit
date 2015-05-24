@@ -8,7 +8,7 @@ Support: Chrome, Firefox, Safari (desktop & mobile) and IE 9+
 ## Install
 
 ```
-$ npm install react-inline-edit
+$ npm i react-inline-edit
 ```
 
 ## Usage
