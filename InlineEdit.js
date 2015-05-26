@@ -218,6 +218,10 @@ var InlineEdit = React.createClass({
           break;
 
         default:
+          // If placeholder text present - Remove it on keydown.
+          if (this.props.text === this.props.placeholder) {
+            this.unsetPlaceholder();
+          }
           break;
       }
     }
