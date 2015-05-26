@@ -206,6 +206,7 @@ var InlineEdit = React.createClass({
           prev();
           if (this.props.onEnterKey) {
             this.props.onEnterKey();
+            e.target.blur();  // On enter - blur the current element
           }
           break;
 
