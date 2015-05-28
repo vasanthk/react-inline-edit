@@ -28,6 +28,7 @@ var InlineEdit = React.createClass({
     autoFocus: React.PropTypes.bool,
     editing: React.PropTypes.bool,
     maxLength: React.PropTypes.number,
+    onBlur: React.PropTypes.func,
     onChange: React.PropTypes.func.isRequired,
     onEnterKey: React.PropTypes.func,
     onEscapeKey: React.PropTypes.func,
@@ -103,6 +104,7 @@ var InlineEdit = React.createClass({
       onMouseDown: this.onMouseDown,
       onTouchStart: this.onMouseDown,
       onFocus: this.onFocus,
+      onBlur: this.onBlur,
       onKeyPress: this.onKeyPress,
       onInput: this.onInput,
       onKeyUp: this.onKeyUp
@@ -161,6 +163,12 @@ var InlineEdit = React.createClass({
     // if we have a placeholder, set the cursor to the start
     this.setCursorToStart(true);
     e.preventDefault();
+  },
+
+  onBlur: function() {
+    if (this.props.onBlur) {
+      this.props.onBlur();
+    }
   },
 
   onKeyDown: function (e) {
