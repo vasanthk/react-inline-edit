@@ -60,6 +60,7 @@ var InlineEdit = React.createClass({
       this.autofocus();
     }
 
+    // Makes sure the cursor position is at the right position on keyUp
     if (this.state && this.state.range) {
       selectionRange(React.findDOMNode(this), this.state.range);
     }
