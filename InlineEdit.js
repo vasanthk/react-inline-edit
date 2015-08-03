@@ -59,6 +59,10 @@ var InlineEdit = React.createClass({
     if (!prevProps.editing && this.props.editing && this.props.autoFocus) {
       this.autofocus();
     }
+
+    if (this.state && this.state.range) {
+      selectionRange(React.findDOMNode(this), this.state.range);
+    }
   },
 
   autofocus: function () {
