@@ -9,6 +9,7 @@
  * Module Dependencies
  */
 var React = require('react');
+var ReactDOM = require('react-dom');
 var classNames = require('classnames'); // conditionally joins classNames together
 
 var isNotServer = typeof window !== 'undefined';
@@ -62,12 +63,12 @@ var InlineEdit = React.createClass({
 
     // Makes sure the cursor position is at the right position on keyUp
     if (this.state && this.state.range) {
-      selectionRange(React.findDOMNode(this), this.state.range);
+      selectionRange(ReactDOM.findDOMNode(this), this.state.range);
     }
   },
 
   autofocus: function () {
-    React.findDOMNode(this).focus();
+    ReactDOM.findDOMNode(this).focus();
     if (this.props.text.length) {
       this.setCursorToStart();
     }
@@ -118,17 +119,17 @@ var InlineEdit = React.createClass({
 
   setPlaceholder: function (text) {
     if (!text.trim().length && this.props.placeholder) {
-      React.findDOMNode(this).textContent = this.props.placeholder;
+      ReactDOM.findDOMNode(this).textContent = this.props.placeholder;
       this.setCursorToStart();
     }
   },
 
   unsetPlaceholder: function () {
-    React.findDOMNode(this).textContent = '';
+    ReactDOM.findDOMNode(this).textContent = '';
   },
 
   setCursorToStart: function (atStart) {
-    React.findDOMNode(this).focus();
+    ReactDOM.findDOMNode(this).focus();
     if (!isNotServer) {
       return;
     }
@@ -138,13 +139,13 @@ var InlineEdit = React.createClass({
       // Note: Range and Selection Web APIs have limited Browser support as of now (5/15)
       var sel = window.getSelection();
       var range = document.createRange(); // The Range interface represents a fragment of a document that can contain nodes and parts of text nodes.
-      range.selectNodeContents(React.findDOMNode(this));
+      range.selectNodeContents(ReactDOM.findDOMNode(this));
       range.collapse(atStart);  // true collapses the Range to its start, false to its end
       sel.removeAllRanges();  // Removes all ranges from the selection
       sel.addRange(range);  // Adds a Range to a Selection
     } else if (typeof document.body.createTextRange !== 'undefined') {
       var textRange = document.body.createTextRange();
-      textRange.moveToElementText(React.findDOMNode(this));
+      textRange.moveToElementText(ReactDOM.findDOMNode(this));
       textRange.collapse(atStart);
       textRange.select();
     }
@@ -288,7 +289,7 @@ var InlineEdit = React.createClass({
   },
 
   setText: function (val) {
-    var range = selectionRange(React.findDOMNode(this));
+    var range = selectionRange(ReactDOM.findDOMNode(this));
     this.setState({range: range});
     this.props.onChange(val);
   }

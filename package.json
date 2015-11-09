@@ -27,7 +27,8 @@
   "homepage": "https://github.com/vasanthk/react-inline-edit",
   "dependencies": {
     "classnames": "^2.1.1",
-    "react": "^0.13.3",
+    "react": "^0.14.2",
+    "react-dom": "^0.14.2",
     "selection-range": "^1.0.1"
   }
 }
