@@ -59,7 +59,7 @@ var InlineEdit = React.createClass({
   },
 
   componentDidUpdate: function (prevProps) {
-    const element = ReactDOM.findDOMNode(this);
+    var element = ReactDOM.findDOMNode(this);
     if (element === document.activeElement) {
       if (!prevProps.editing && this.props.editing && this.props.autoFocus) {
         this.autofocus();
@@ -106,8 +106,8 @@ var InlineEdit = React.createClass({
     }
 
     // pass along html attributes
-    const props = {};
-    const componentProps = Object.keys(propTypes);
+    var props = {};
+    var componentProps = Object.keys(propTypes);
     Object.keys(this.props)
       .filter(function (key) {
         return componentProps.indexOf(key) < 0 })
