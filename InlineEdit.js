@@ -57,13 +57,16 @@ var InlineEdit = React.createClass({
   },
 
   componentDidUpdate: function (prevProps) {
-    if (!prevProps.editing && this.props.editing && this.props.autoFocus) {
-      this.autofocus();
-    }
+    const element = ReactDOM.findDOMNode(this);
+    if (element === document.activeElement) {
+      if (!prevProps.editing && this.props.editing && this.props.autoFocus) {
+        this.autofocus();
+      }
 
-    // Makes sure the cursor position is at the right position on keyUp
-    if (this.state && this.state.range) {
-      selectionRange(ReactDOM.findDOMNode(this), this.state.range);
+      // Makes sure the cursor position is at the right position on keyUp
+      if (this.state && this.state.range) {
+        selectionRange(ReactDOM.findDOMNode(this), this.state.range);
+      }
     }
   },
 
@@ -100,21 +103,31 @@ var InlineEdit = React.createClass({
       content = this.props.text;
     }
 
+    // pass along html attributes
+    const props = {};
+    const componentProps = Object.keys(this.propTypes);
+    Object.keys(this.props)
+      .filter(function (key) {
+        componentProps.indexOf(key) < 0 })
+      .forEach(function (key) {
+        props[key] = this.props[key]; });
+      
+
+    props.tabIndex = this.props.autoFocus ? -1 : 0;
+    props.className = classNames(classes);
+    props.contentEditable = editing;
+    props.onKeyDown = this.onKeyDown;
+    props.onPaste = this.onPaste;
+    props.onMouseDown = this.onMouseDown;
+    props.onTouchStart = this.onMouseDown;
+    props.onFocus = this.onFocus;
+    props.onBlur = this.onBlur;
+    props.onKeyPress = this.onKeyPress;
+    props.onInput = this.onInput;
+    props.onKeyUp = this.onKeyUp;
+
     // return element
-    return React.createElement(tagName, {
-      tabIndex: this.props.autoFocus ? -1 : 0,
-      className: classNames(classes),
-      contentEditable: editing,
-      onKeyDown: this.onKeyDown,
-      onPaste: this.onPaste,
-      onMouseDown: this.onMouseDown,
-      onTouchStart: this.onMouseDown,
-      onFocus: this.onFocus,
-      onBlur: this.onBlur,
-      onKeyPress: this.onKeyPress,
-      onInput: this.onInput,
-      onKeyUp: this.onKeyUp
-    }, content);
+    return React.createElement(tagName, props, content);
   },
 
   setPlaceholder: function (text) {
