@@ -23,20 +23,22 @@ if (isNotServer) {
  * Make an InlineEdit component
  */
 
+var propTypes = {
+  autoFocus: React.PropTypes.bool,
+  editing: React.PropTypes.bool,
+  maxLength: React.PropTypes.number,
+  onBlur: React.PropTypes.func,
+  onChange: React.PropTypes.func.isRequired,
+  onEnterKey: React.PropTypes.func,
+  onEscapeKey: React.PropTypes.func,
+  placeholder: React.PropTypes.string,
+  tagName: React.PropTypes.string,
+  text: React.PropTypes.string.isRequired
+};
+
 var InlineEdit = React.createClass({
 
-  propTypes: {
-    autoFocus: React.PropTypes.bool,
-    editing: React.PropTypes.bool,
-    maxLength: React.PropTypes.number,
-    onBlur: React.PropTypes.func,
-    onChange: React.PropTypes.func.isRequired,
-    onEnterKey: React.PropTypes.func,
-    onEscapeKey: React.PropTypes.func,
-    placeholder: React.PropTypes.string,
-    tagName: React.PropTypes.string,
-    text: React.PropTypes.string.isRequired
-  },
+  propTypes: propTypes,
 
   // Default props
   getDefaultProps: function () {
@@ -105,13 +107,13 @@ var InlineEdit = React.createClass({
 
     // pass along html attributes
     const props = {};
-    const componentProps = Object.keys(this.propTypes);
+    const componentProps = Object.keys(propTypes);
     Object.keys(this.props)
       .filter(function (key) {
-        componentProps.indexOf(key) < 0 })
+        return componentProps.indexOf(key) < 0 })
       .forEach(function (key) {
-        props[key] = this.props[key]; });
-      
+        props[key] = this.props[key]; }, this);
+
 
     props.tabIndex = this.props.autoFocus ? -1 : 0;
     props.className = classNames(classes);
