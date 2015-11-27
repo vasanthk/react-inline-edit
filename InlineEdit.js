@@ -37,7 +37,7 @@ var propTypes = {
 };
 
 var InlineEdit = React.createClass({
-
+  displayName: 'InlineEdit',
   propTypes: propTypes,
 
   // Default props
