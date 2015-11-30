@@ -215,12 +215,14 @@ var InlineEdit = React.createClass({
       switch (keyCode) {
         case 46:     // 'Delete' key
         case 8:      // 'Backspace' key
-        case 9:      // 'Tab' key
         case 39:     // 'Arrow right' key
         case 37:     // 'Arrow left' key
         case 40:     // 'Arrow left' key
         case 38:     // 'Arrow left' key
           prev();
+          break;
+
+        case 9:      // 'Tab' key
           break;
 
         default:
@@ -286,6 +288,10 @@ var InlineEdit = React.createClass({
   },
 
   onKeyUp: function (e) {
+    if (e.keyCode === 9) {  // 'Tab' key
+      this._stop = true;
+    }
+    
     var stop = this._stop;
     this._stop = false;
 
