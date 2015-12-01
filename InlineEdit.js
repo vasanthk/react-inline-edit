@@ -223,6 +223,7 @@ var InlineEdit = React.createClass({
           break;
 
         case 9:      // 'Tab' key
+        case 16:     // 'Shift' key
           break;
 
         default:
@@ -288,7 +289,8 @@ var InlineEdit = React.createClass({
   },
 
   onKeyUp: function (e) {
-    if (e.keyCode === 9) {  // 'Tab' key
+    // 'Tab' or 'Shift' keys
+    if (e.keyCode === 9 || e.keyCode === 16) {
       this._stop = true;
     }
     
