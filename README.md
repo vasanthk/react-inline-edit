@@ -1,9 +1,12 @@
-# React inline edit
+# React Inline Edit
 
-This component allows you to to make inline/in-place edits with a 'contenteditable' input element.
-Inspired by Ben McMahen's [react-wysiwyg](https://github.com/bmcmahen/react-wysiwyg).
+This component allows you to to make inline/in-place edits to the text rendered inside the <InlineEdit/>
 
 Support: Chrome, Firefox, Safari (desktop & mobile) and IE 9+
+
+The new version comes with a simpler API which uses `<textarea>` input elements that auto resize to fit in the text edits.
+
+The [previous version](https://github.com/vasanthk/react-inline-edit/tree/contenteditable-version) (v 1.x.x) of this module used `contenteditable` which was quirky by spec and had various issues.  
 
 ## Install
 
@@ -11,60 +14,10 @@ Support: Chrome, Firefox, Safari (desktop & mobile) and IE 9+
 $ npm i react-inline-edit
 ```
 
-## Usage
+## Demo
 
-```javascript
-var InlineEdit = require('react-inline-edit');
+![React Inline Edit Demo](https://cdn.rawgit.com/vasanthk/react-inline-edit/textarea-version/demo/InlineEdit.gif)
 
-var Example = React.createClass({
-  
-  getInitialState: {
-    text: '',
-    editing: false
-  },
+You can play around with the demo code in the [demo](demo) folder.
 
-  render: function(){
-    return (
-      <div>
-        <InlineEdit
-          tagName='div'
-          className='name-field'
-          onChange={this.onChange}
-          onEnterKey={this.onSave}
-          onEscapeKey={this.onCancel}
-          text={this.state.text}
-          placeholder='Your Name'
-          autoFocus={true}
-          maxLength={200}
-          editing={this.state.editing}
-        />
-        <button onClick={this.enableEditing}>
-          Enable Editing
-        </button>
-      </div>
-    );
-  },
 
-  onSave: function() {
-    // logic to save this.state.text here
-    this.replaceState(this.getInitialState())
-  },
-
-  onCancel: function() {
-    this.replaceState(this.getInitialState())
-  },
-
-  onChange: function(text) {
-    // in order to render the updated text,
-    // you need to pass it as a prop to contentEditable.
-    // This gives you increased flexibility.
-    this.setState({ text: text });
-  },
-
-  enableEditing: function(){
-    // contenteditable field set to edit mode.
-    this.setState({ editing: true });
-  }
-
-});
-```
