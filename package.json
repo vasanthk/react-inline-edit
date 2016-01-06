@@ -1,10 +1,13 @@
 {
   "name": "react-inline-edit",
-  "version": "1.2.7",
+  "version": "2.0.0",
   "description": "A React component that allows inline/in-place edits.",
-  "main": "InlineEdit.js",
+  "main": "dist/bundle.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node server.js",
+    "build": "webpack --config webpack.config.production.js",
+    "build-demo": "webpack --config webpack.config.demo.js",
+    "lint": "eslint ."
   },
   "repository": {
     "type": "git",
@@ -12,7 +15,6 @@
   },
   "keywords": [
     "inline-edit",
-    "contenteditable",
     "inline",
     "edit",
     "inplace",
@@ -26,11 +28,18 @@
   },
   "homepage": "https://github.com/vasanthk/react-inline-edit",
   "dependencies": {
-    "classnames": "^2.1.1",
-    "selection-range": "^1.0.1"
+    "react": "^0.14.5",
+    "react-dom": "^0.14.5",
+    "babel-runtime": "^5.0.0"
   },
-  "peerDependencies": {
-    "react": "^0.14.2",
-    "react-dom": "^0.14.2"
+  "devDependencies": {
+    "babel-core": "^5.4.5",
+    "babel-eslint": "^3.1.6",
+    "babel-loader": "^5.0.0",
+    "eslint": "^0.21.2",
+    "eslint-plugin-react": "^2.3.0",
+    "react-hot-loader": "^1.1.5",
+    "webpack": "^1.8.4",
+    "webpack-dev-server": "^1.8.0"
   }
 }
