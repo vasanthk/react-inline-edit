@@ -1,6 +1,6 @@
 # React Inline Edit
 
-This component allows you to to make inline/in-place edits to the text rendered inside the <InlineEdit/>
+Allows you to to make inline/in-place edits to the text rendered inside the component.
 
 Support: Chrome, Firefox, Safari (desktop & mobile) and IE 9+
 
