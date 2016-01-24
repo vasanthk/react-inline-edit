@@ -1,8 +1,8 @@
 {
   "name": "react-inline-edit",
-  "version": "2.1.0",
+  "version": "2.2.0",
   "description": "A React component that allows inline/in-place edits.",
-  "main": "dist/bundle.js",
+  "main": "dist/InlineEdit.js",
   "scripts": {
     "start": "node server.js",
     "build": "babel scripts --out-dir dist",
