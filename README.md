@@ -2,7 +2,7 @@
 
 Allows you to to make inline/in-place edits to the text rendered inside the component.
 
-Support: Chrome, Firefox, Safari (desktop & mobile) and IE 9+
+Support: Chrome, Firefox, Safari and IE 9+
 
 The new version comes with a simpler API which uses `<textarea>` input elements that auto resize to fit in the text edits.
 
